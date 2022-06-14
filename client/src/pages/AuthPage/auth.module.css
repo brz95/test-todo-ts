@@ -1,37 +1,219 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 
-.page{
-  background-color: var(--background-color);
-  height: 100vh;
+.page {
+  background-color: var(--background);
+  font-family: "Cormorant Garamond";
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.container{
+.container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-areas: '. form panel';
+  grid-template-areas: ". form panel";
   grid-column-gap: 50px;
   margin: 0 auto;
-  min-width: 1150px;
-  height: 100%;
+  width: 1150px;
 }
-.form_container{
+.form_container {
   grid-area: form;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.form_title{
-  font-family: "Cormorant Garamond";
-font-size: 27px;
-margin-bottom: 74px;
-font-weight: 700;
+.form_title {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-primary);
 }
-.panel_container{
+
+.form__inputs {
+  width: 340px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 300px;
+}
+
+.form {
+  width: 320px;
+  height: 50px;
+  margin-top: 10px;
+}
+.form label {
+  line-height: 0.9em;
+  color: var(--text-primary);
+}
+
+.form * {
+  width: 98.5%;
+  height: 100%;
+}
+.button_auth {
+  margin-top: 20px;
+}
+.form button {
+  width: 250px;
+  height: 40px;
+  margin: auto;
+  color: var(--color-btn);
+  background-color: var(--background-btn);
+}
+.form div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error {
+  width: 300px;
+  color: red;
+}
+.redirect_info {
+  font-size: 33px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.panel_container {
   grid-area: panel;
+  display: flex;
+  color: rgb(0, 0, 0);
+  flex-direction: column;
+  color: var(--text-primary);
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: var(--bg-img);
 }
-input{
+
+@media (min-width: 592px) and (max-width: 899.98px) {
+  .container {
+   width: 690px;
+  }
+  .form_title {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+}
+.login {
+  width: 320px;
+  height: 450px;
+  border: 1px solid #CCC;
+  background: url(https://media4.giphy.com/media/BHNfhgU63qrks/giphy.gif) center center no-repeat;
+  background-size: cover;
+  margin: auto;
+  border-radius: 20px;
+  
+}
+.login .auth_form {
   width: 100%;
+  height: 100%;
+  padding: 15px 25px;
 }
+.login .auth_form h2 {
+  color: #FFF;
+  text-align: center;
+  font-weight: normal;
+  font-size: 18px;
+  margin-top: 60px;
+  margin-bottom: 80px;
+}
+.login .auth_form input {
+  width: 100%;
+  height: 40px;
+  margin-top: 20px;
+  background: rgba(255,255,255,.5);
+  border: 1px solid rgba(255,255,255,.1);
+  padding: 0 15px;
+  color: #FFF;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.login .auth_form input:focus {
+  border: 1px solid rgba(255,255,255,.8);
+  outline: none;
+}
+::-webkit-input-placeholder {
+    color: #DDD;
+}
+.login .auth_form input.submit {
+  background: rgba(255,255,255,.9);
+  color: #444;
+  font-size: 15px;
+  margin-top: 40px;
+  font-weight: bold;
+}
+.auth_box{
+  background-color: var(--background);
+  height: 100vh;
+}
+.login_box{
+  padding-top: 140px;
+}
+.darkmode_box{
+  position: absolute;
+  top: 100px;
+  right: 200px;
+}
+.loader_box{
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
+.auth_loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  border: 3px solid;
+  border-color: #FFF #FFF transparent transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.auth_loader::after,
+.auth_loader::before {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 3px solid;
+  border-color: transparent transparent #FF3D00 #FF3D00;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: rotationBack 0.5s linear infinite;
+  transform-origin: center center;
+}
+.auth_loader::before {
+  width: 32px;
+  height: 32px;
+  border-color: #FFF #FFF transparent transparent;
+  animation: rotation 1.5s linear infinite;
+}
+    
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+    

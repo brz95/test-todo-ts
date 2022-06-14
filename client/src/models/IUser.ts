@@ -3,5 +3,5 @@ export interface IUser {
   email: string,
   nickname: string,
   password: string,
-  isAdmin: boolean
+  isAdmin: boolean,
 }

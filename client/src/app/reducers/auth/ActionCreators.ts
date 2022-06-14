@@ -4,7 +4,10 @@ const serverURL = "http://localhost:3434";
 
 export const regUser = createAsyncThunk(
   "user/reg",
-  async ( data: { email: string; password: string; nickname: string; }, thunkApi ) => {
+  async (
+    data: { email: string; password: string; nickname: string },
+    thunkApi
+  ) => {
     try {
       const response = await fetch(`${serverURL}/reg`, {
         method: "POST",
@@ -18,7 +21,11 @@ export const regUser = createAsyncThunk(
         }),
       });
       const user = await response.json();
-      console.log(user)
+
+      if (user.error) {
+        return thunkApi.rejectWithValue(user.error);
+      }
+
       return thunkApi.fulfillWithValue(user);
     } catch (error) {
       return thunkApi.rejectWithValue(error);
@@ -42,6 +49,10 @@ export const loginUser = createAsyncThunk(
       });
 
       const user = await response.json();
+      
+      if (response.ok === false) {
+        return thunkApi.rejectWithValue(user.error);
+      }
 
       if (response.ok) {
         localStorage.setItem("token", user.token);

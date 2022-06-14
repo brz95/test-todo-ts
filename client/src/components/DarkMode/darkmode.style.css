@@ -1,0 +1,84 @@
+:root {
+  --background: white;
+  --text-primary: black;
+  --text-secondary: royalblue;
+  --accent: purple;
+  --color-btn: rgb(7, 122, 223);
+  --bg-img: url('../../assets/images/lig.jpg') 0 0/100% auto no-repeat;
+  --auth-color: #03e9f4;
+  --auth-box: rgba(0, 13, 155, 0.759);
+  --auth-bg: rgb(199, 199, 199);
+}
+
+[data-theme="dark"] {
+  --background: rgb(20, 20, 20);
+  --text-primary: white;
+  --text-secondary: grey;
+  --accent: darkred;
+  --color-btn: rgb(255, 255, 255);
+  --background-btn: rgb(7, 122, 223);
+  --bg-img: url('../../assets/images/nig.jpg') 0 0/100% auto no-repeat;
+  --auth-color: #e0fcfe;
+  --auth-box: rgb(0, 4, 56);
+  --auth-bg: rgb(0, 0, 0);
+}
+
+.toggle-theme-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.toggle-theme-wrapper span {
+  font-size: 28px;
+  margin: 0 4px;
+}
+
+.toggle-theme {
+  position: relative;
+  display: inline-block;
+  height: 34px;
+  width: 60px;
+}
+
+.toggle-theme input {
+  display: none;
+}
+
+.slider {
+  background-color: #ccc;
+  position: absolute;
+  cursor: pointer;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  transition: 0.2s;
+}
+
+.slider:before {
+  background-color: #fff;
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: 0.4s;
+  width: 26px;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+input:checked + .slider {
+  background-color: cornflowerblue;
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

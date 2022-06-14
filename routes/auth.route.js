@@ -7,18 +7,26 @@ const router = new Router();
 router.post(
   "/reg",
   [
-    check("nickname", "NickName не может быть пустым").notEmpty(),
-    check("email", "Email не может быть пустым").notEmpty(),
-    check("password", "Пароль не может быть пустым").notEmpty(),
+    check("nickname", "Ник не может быть пустым\n").notEmpty(),
+    check("email", "Email не может быть пустым\n").notEmpty(),
+    check("email", "Используйте Email!\n").normalizeEmail().isEmail(),
+    check("password", "Пароль не может быть пустым\n").notEmpty(),
     check(
       "password",
-      "Пароль не может быть меньше 3 и больше 6 символов"
+      "Пароль не может быть меньше 3 и больше 6 символов\n"
     ).isLength({ min: 3, max: 6 }),
   ],
   userController.registration
 );
 
-router.post("/login", userController.login);
+router.post("/login", [
+  check("nickname", "Ник не может быть пустым\n").notEmpty(),
+  check("password", "Пароль не может быть пустым\n").notEmpty(),
+  check(
+    "password",
+    "Пароль не может быть меньше 3 и больше 6 символов\n"
+  ).isLength({ min: 3, max: 6 }),
+],userController.login);
 
 router.get("/users", authMiddleware, userController.getUser);
 

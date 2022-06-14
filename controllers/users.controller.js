@@ -10,7 +10,7 @@ module.exports.userController = {
       const msg = errors.errors.map((item) => item.msg);
 
       if (!errors.isEmpty()) {
-        return res.status(401).json({ message: `Ошибка: ${msg}` });
+        return res.status(401).json({ error: `Ошибка: ${msg}` });
       }
 
       const { email, password, nickname, isAdmin, todos } = req.body;
@@ -20,14 +20,14 @@ module.exports.userController = {
       if (candidateMail) {
         return res
           .status(401)
-          .json({ message: `Пользователь ${email} уже существует!` });
+          .json({ error: `Пользователь ${email} уже существует!` });
       }
 
       const candidateNick = await User.findOne({ nickname });
       if (candidateNick) {
         return res
           .status(401)
-          .json({ message: `Пользователь ${nickname} уже существует!` });
+          .json({ error: `Пользователь ${nickname} уже существует!` });
       }
 
       const hashPassword = await bcrypt.hash(password, 3);
@@ -41,39 +41,42 @@ module.exports.userController = {
       });
       return res.json(user);
     } catch (error) {
-      return res.status(400).json({ message: `Ошибка регистрации: ${error.message}` });
+      return res
+        .status(400)
+        .json({ error: `Ошибка регистрации: ${error.message}` });
     }
   },
 
   login: async (req, res) => {
     try {
-      const { email, password, nickname } = req.body;
+      const { password, nickname } = req.body;
 
-      const checkEmail = await User.findOne({ email });
-      const checkNickname = await User.findOne({ nickname });
+      const checkNickname = await User.findOne({nickname});
 
-      if (!checkEmail) {
-        res.status(401).json("Пользователь с таким Email не найден!");
-      }
       if (!checkNickname) {
-        res.status(401).json("Пользователь с таким ником не найден!");
+        return res.status(401).json({error: "Пользователь с таким ником не найден!"});
       }
 
-      const checkPassword = bcrypt.compareSync(password, checkEmail.password);
+      const checkPassword = bcrypt.compareSync(
+        password,
+        checkNickname.password
+      );
 
       if (!checkPassword) {
-        res.status(401).json("Пароль неверный!!!");
+       return res.status(401).json({error: "Пароль неверный"});
       }
 
       const token = jwt.sign(
-        { userId: checkEmail._id },
+        { userId: checkNickname._id },
         process.env.JWT_SECRET_KEY,
         { expiresIn: "30d" }
       );
 
-      return res.json({ token: token });
+      return res.json({ token: token, id: checkNickname._id });
     } catch (error) {
-      return res.status(400).json({ message: `Ошибка авторизации: ${error.message}` });
+      return res
+        .status(400)
+        .json({ error: `Ошибка авторизации: ${error.message}` });
     }
   },
   getUser: async (req, res) => {
@@ -81,7 +84,7 @@ module.exports.userController = {
       const users = await User.find();
       res.json(users);
     } catch (error) {
-      return  res.status(400).json({ message: `Ошибка: ${error.message}` });
+      return res.status(400).json({ error: `Ошибка: ${error.message}` });
     }
   },
 };
