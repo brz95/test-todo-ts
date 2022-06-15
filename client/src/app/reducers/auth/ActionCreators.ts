@@ -71,3 +71,15 @@ export const logoutUser = createAsyncThunk(
     localStorage.clear();
   }
 );
+
+export const getUsers = createAsyncThunk('get/users', async(_, thunkApi) => {
+  try {
+    const response = await fetch(`${serverURL}/users`)
+    const users = response.json()
+    console.log(users);
+    
+  } catch (error) {
+    return thunkApi.rejectWithValue(error);
+
+  }
+})

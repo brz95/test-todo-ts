@@ -28,6 +28,6 @@ router.post("/login", [
   ).isLength({ min: 3, max: 6 }),
 ],userController.login);
 
-router.get("/users", authMiddleware, userController.getUser);
+router.get("/users", userController.getUser);
 
 module.exports = router;
