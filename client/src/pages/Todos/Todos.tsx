@@ -38,7 +38,7 @@ const Todos: React.FC = () => {
       <DarkMode />
       <div className={styles.todo_box}>
         <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-          <Form.Label>Todo by</Form.Label>
+          <Form.Label>Todo by You</Form.Label>
           <div className={styles.todo_header}>
             <Form.Control
               type="text"

@@ -23,10 +23,10 @@ export const TodoSlice = createSlice({
       state.loading = true;
       state.error = "";
     })
-    builder.addCase(addTodo.fulfilled.type, (state, action: PayloadAction<ITodo[]>) => {
+    builder.addCase(addTodo.fulfilled.type, (state, action: PayloadAction<ITodo>) => {
       state.loading = false;
       state.error = "";
-      state.todos = action.payload;
+      state.todos.push(action.payload);
     })
     builder.addCase(addTodo.rejected.type, (state, action:  PayloadAction<string>)=> {
       state.loading = false;
