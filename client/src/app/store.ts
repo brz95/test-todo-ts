@@ -1,8 +1,9 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import userReducer from './reducers/auth/userSlice'
+import todoReducer from './reducers/todo/todoSlice'
 
 const rootReducer = combineReducers({
-  userReducer
+  userReducer, todoReducer
 })
 
 export const setupStore = () => {

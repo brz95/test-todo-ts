@@ -1,0 +1,38 @@
+.todo_page {
+  background-color: var(--todo-background);
+  color: var(--text-primary);
+  height: 100vh;
+}
+.todo_box {
+  width: 900px;
+  height: 500px;
+  margin-top: 70px !important;
+  margin: auto;
+  border-radius: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 40px;
+  background-color: var(--todo-bg);
+}
+.todo_header_button {
+  margin-left: 20px;
+}
+.todo_header {
+  display: flex;
+  margin-top: 4px;
+}
+
+.todo_input{
+  margin-left: 12px;
+}
+.todo_loader{
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+.todos_form_box{
+  width: 500px;
+  background-color: aquamarine;
+  margin: auto;
+}

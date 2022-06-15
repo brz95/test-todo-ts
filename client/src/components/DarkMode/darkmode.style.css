@@ -4,10 +4,12 @@
   --text-secondary: royalblue;
   --accent: purple;
   --color-btn: rgb(7, 122, 223);
-  --bg-img: url('../../assets/images/lig.jpg') 0 0/100% auto no-repeat;
+  --bg-img: url("../../assets/images/lig.jpg") 0 0/100% auto no-repeat;
   --auth-color: #03e9f4;
   --auth-box: rgba(0, 13, 155, 0.759);
   --auth-bg: rgb(199, 199, 199);
+  --todo-bg: rgb(255, 255, 255);
+  --todo-background: #e5e5e5;
 }
 
 [data-theme="dark"] {
@@ -17,10 +19,12 @@
   --accent: darkred;
   --color-btn: rgb(255, 255, 255);
   --background-btn: rgb(7, 122, 223);
-  --bg-img: url('../../assets/images/nig.jpg') 0 0/100% auto no-repeat;
+  --bg-img: url("../../assets/images/nig.jpg") 0 0/100% auto no-repeat;
   --auth-color: #e0fcfe;
   --auth-box: rgb(0, 4, 56);
   --auth-bg: rgb(0, 0, 0);
+  --todo-bg: #111111;
+  --todo-background: #292929;
 }
 
 .toggle-theme-wrapper {

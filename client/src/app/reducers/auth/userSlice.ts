@@ -13,57 +13,74 @@ interface UserState {
 const initialState: UserState = {
   users: [],
   loading: false,
-  error: '',
+  error: "",
   token: localStorage.getItem("token"),
   id: localStorage.getItem("id"),
-}
+};
 
 export const UserSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
-  reducers: {}, 
+  reducers: {},
   extraReducers(builder) {
     builder.addCase(regUser.pending.type, (state) => {
       state.loading = true;
-      state.error = '';
-    })
-    builder.addCase(regUser.fulfilled.type, (state, action: PayloadAction<IUser[]>) =>{
-      state.loading = false;
-      state.error = '';
-      state.users = action.payload;
-    })
-    builder.addCase(regUser.rejected.type, (state, action: PayloadAction<string>) => {
-      state.loading = false;
-      state.error = action.payload;
-    })
+      state.error = "";
+    });
+    builder.addCase(
+      regUser.fulfilled.type,
+      (state, action: PayloadAction<IUser[]>) => {
+        state.loading = false;
+        state.error = "";
+        state.users = action.payload;
+      }
+    );
+    builder.addCase(
+      regUser.rejected.type,
+      (state, action: PayloadAction<string>) => {
+        state.loading = false;
+        state.error = action.payload;
+      }
+    );
     builder.addCase(loginUser.pending.type, (state) => {
       state.loading = true;
-      state.error = '';
-    })
-    builder.addCase(loginUser.fulfilled.type, (state, action: PayloadAction<IUser[]>) =>{
-      state.loading = false;
-      state.error = '';
-      state.users = action.payload;
-    })
-    builder.addCase(loginUser.rejected.type, (state, action: PayloadAction<string>) => {
-      state.loading = false;
-      state.error = action.payload;
-    })
+      state.error = "";
+    });
+    builder.addCase(
+      loginUser.fulfilled.type,
+      (state, action: PayloadAction<IUser[]>) => {
+        state.loading = false;
+        state.error = "";
+        state.users = action.payload;
+      }
+    );
+    builder.addCase(
+      loginUser.rejected.type,
+      (state, action: PayloadAction<string>) => {
+        state.loading = false;
+        state.error = action.payload;
+      }
+    );
     builder.addCase(getUsers.pending.type, (state) => {
       state.loading = true;
-      state.error = '';
-    })
-    builder.addCase(getUsers.fulfilled.type, (state, action: PayloadAction<IUser[]>) =>{
-      state.loading = false;
-      state.error = '';
-      state.users = action.payload;
-    })
-    builder.addCase(getUsers.rejected.type, (state, action: PayloadAction<string>) => {
-      state.loading = false;
-      state.error = action.payload;
-    })
+      state.error = "";
+    });
+    builder.addCase(
+      getUsers.fulfilled.type,
+      (state, action: PayloadAction<IUser[]>) => {
+        state.loading = false;
+        state.error = "";
+        state.users = action.payload;
+      }
+    );
+    builder.addCase(
+      getUsers.rejected.type,
+      (state, action: PayloadAction<string>) => {
+        state.loading = false;
+        state.error = action.payload;
+      }
+    );
   },
-  
-})
+});
 
 export default UserSlice.reducer;

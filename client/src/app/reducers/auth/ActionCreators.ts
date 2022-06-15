@@ -49,8 +49,8 @@ export const loginUser = createAsyncThunk(
       });
 
       const user = await response.json();
-      
-      if (response.ok === false) {
+
+      if (!response.ok) {
         return thunkApi.rejectWithValue(user.error);
       }
 
@@ -72,14 +72,17 @@ export const logoutUser = createAsyncThunk(
   }
 );
 
-export const getUsers = createAsyncThunk('get/users', async(_, thunkApi) => {
+export const getUsers = createAsyncThunk("get/users", async (_, thunkApi) => {
   try {
-    const response = await fetch(`${serverURL}/users`)
-    const users = response.json()
-    console.log(users);
-    
+    const response = await fetch(`${serverURL}/users`);
+    const users = await response.json();
+
+    if (!response.ok) {
+      return thunkApi.rejectWithValue(users.error);
+    }
+
+    return thunkApi.fulfillWithValue(users);
   } catch (error) {
     return thunkApi.rejectWithValue(error);
-
   }
-})
+});
