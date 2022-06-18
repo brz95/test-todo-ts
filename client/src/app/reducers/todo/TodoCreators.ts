@@ -43,3 +43,4 @@ export const fetchTodos = createAsyncThunk("get/todos", async (_, thunkApi) => {
     return thunkApi.rejectWithValue(error);
   }
 });
+

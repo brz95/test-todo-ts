@@ -32,7 +32,12 @@
   margin: auto;
 }
 .todos_form_box{
-  width: 500px;
+  width: 97%;
   background-color: aquamarine;
+  padding: 10px;
   margin: auto;
+}
+.todos_form_box_todo{
+  display: flex;
+  justify-content: space-between;
 }

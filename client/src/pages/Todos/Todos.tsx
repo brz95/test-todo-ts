@@ -10,10 +10,12 @@ const Todos: React.FC = () => {
   const dispatch = useAppDispatch();
   const [text, setText] = useState<string>("");
   const { id } = useAppSelector((state) => state.userReducer);
-  const { todos, loading } = useAppSelector((state) => state.todoReducer);
+  const { todos, loading, error } = useAppSelector(
+    (state) => state.todoReducer
+  );
   const user = id;
   console.log(todos);
-  
+
   const handleInputTodo = (
     e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => {
@@ -22,9 +24,13 @@ const Todos: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchTodos())
-    .unwrap()
-    .then(() => {return 'Тудушка'})
-    .catch(() => {return 'Ошибка'});
+      .unwrap()
+      .then(() => {
+        return "Тудушка";
+      })
+      .catch(() => {
+        return "Ошибка";
+      });
   }, [dispatch]);
 
   const handleAddTodo = () => {
@@ -36,6 +42,7 @@ const Todos: React.FC = () => {
   return (
     <div className={styles.todo_page}>
       <DarkMode />
+      <div style={{ color: "red" }}>{error}</div>
       <div className={styles.todo_box}>
         <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
           <Form.Label>Todo by You</Form.Label>
@@ -64,7 +71,15 @@ const Todos: React.FC = () => {
               (item: ITodo) =>
                 item.user === id && (
                   <div key={item._id} className={styles.todos_form_box}>
-                    {item.text}
+                    <div className={styles.todos_form_box_todo}>
+                    <input type="checkbox" className={styles.check} />
+                    <p>{item.text}</p>
+              <button
+                className={styles.buttonDel}
+              >
+                Удалить
+              </button>
+                    </div>
                   </div>
                 )
             )
